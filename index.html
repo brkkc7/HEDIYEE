@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İYİKİİ DOĞDUNNN EDA</title>
+    <link rel="shortcut icon" href="c:\Users\Berk\Downloads\png-transparent-pixel-art-8-bit-color-pixel-miscellaneous-game-angle-thumbnail.png" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #4e1f5d, #0d334a);
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            color: #333;
+        }
+
+        .star {
+            position: absolute;
+            top: -10px;
+            width: 20px;
+            height: 20px;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        .star.yellow {
+            background-color: yellow;
+        }
+
+        .star.blue {
+            background-color: blue;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .message {
+            text-align: center;
+            font-size: 2em;
+            color: #8263d9;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            position: relative; /* Added for top positioning */
+            top: -20%; /* Adjust this value to move the text higher */
+        }
+
+        .slide-text {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #8c33d4;
+            position: absolute;
+            white-space: nowrap;
+            overflow: hidden;
+            top: 100%; /* İlk yazının konumu, daha aşağı alındı */
+            opacity: 0; 
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%); 
+                opacity: 0; 
+            }
+            10% {
+                opacity: 1; 
+            }
+            90% {
+                opacity: 1; 
+            }
+            100% {
+                transform: translateX(100vw); 
+                opacity: 0; 
+            }
+        }
+
+        /* Kalp ikonu için stil */
+        .heart-icon {
+            font-size: 3em; /* İkon boyutunu ayarlayın */
+            color: red; /* İkon rengini ayarlayın */
+            position: absolute;
+            top: 10%; /* İkonun konumunu ayarlayın */
+            left: 50%; /* İkonu ortalamak için */
+            transform: translateX(-50%); /* İkonu tam ortalamak için */
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <i class="fas fa-heart heart-icon"></i> <!-- Kalp İkonu Ekle -->
+    <div class="message">
+        <h1>DOĞUM GÜNÜNN KUTLUU OLSUNNN EDAA🤍🙃</h1>
+        <h2 class="slide-text" id="first-text">İYİKİİ DOĞDUNNN EDAA</h2>
+        <h2 class="slide-text" id="second-text">İYİKİ VARSINNN</h2>
+    </div>
+
+    <script>
+        function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = Math.random() * 100 + "vw"; 
+            star.style.animationDuration = Math.random() * 3 + 2 + "s"; 
+            
+            if (Math.random() < 0.5) {
+                star.classList.add('yellow'); 
+            } else {
+                star.classList.add('blue'); 
+            }
+
+            document.body.appendChild(star);
+
+            setTimeout(() => {
+                star.remove();
+            }, 5000);
+        }
+
+        setInterval(createStar, 50); 
+
+        function startSlidingText() {
+            const firstText = document.getElementById("first-text");
+            firstText.style.animation = "slideIn 8s linear forwards"; 
+            firstText.style.opacity = 1; 
+
+            setTimeout(() => {
+                const secondText = document.getElementById("second-text");
+                secondText.style.animation = "slideIn 8s linear forwards";
+                secondText.style.top = "100%"; // İkinci yazının konumu, daha aşağı alındı
+                secondText.style.opacity = 1; 
+            }, 8000); 
+
+            setTimeout(() => {
+                firstText.style.opacity = 0; 
+                secondText.style.opacity = 0;
+
+                setTimeout(() => {
+                    startSlidingText();
+                }, 1000); 
+            }, 16000); 
+        }
+
+        startSlidingText(); 
+    </script>
+</body>
+</html>
